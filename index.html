@@ -1,0 +1,43 @@
+<html>
+
+<header align="center">
+    Get Video Information
+</header>
+<br>
+
+<body>
+    <br>
+    <div align="center">
+        <form action="">
+            <label for="videoselector">
+                Select input video
+            </label>
+            <input id="a" type="file" accept="video/">
+            <button type="submit">Get Video Duration</button>
+            <h1></h1>
+
+        </form>
+    </div>
+</body>
+<script>
+    const { ipcRenderer } = require('electron');
+    const ipc = ipcRenderer;
+
+    document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const path = event.target.elements[0].files[0].path;
+
+
+        ipc.send('hello', path);
+        console.log('send to main');
+    })
+    ipc.on('videodurationreply', (event, arg) => {
+        console.log(arg);
+        const h1 = document.querySelector('h1');
+        h1.innerHTML = `The duration of selected video is ${arg} seconds`
+
+    })
+
+</script>
+
+</html>
