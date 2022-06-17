@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^8.2.0",
+    "electron": "^15.5.5",
     "get-video-duration": "^1.0.3"
   }
 }
